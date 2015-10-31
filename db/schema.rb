@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030144235) do
+ActiveRecord::Schema.define(version: 20151031131926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(version: 20151030144235) do
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "movie_id"
     t.integer  "user_id"
-    t.integer  "show_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "lists", ["movie_id"], name: "index_lists_on_movie_id", using: :btree
-  add_index "lists", ["show_id"], name: "index_lists_on_show_id", using: :btree
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
+
+  create_table "lists_movies", id: false, force: :cascade do |t|
+    t.integer "list_id",  null: false
+    t.integer "movie_id", null: false
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -36,14 +37,7 @@ ActiveRecord::Schema.define(version: 20151030144235) do
     t.text     "image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "shows", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.text     "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "format"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,7 +61,5 @@ ActiveRecord::Schema.define(version: 20151030144235) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "lists", "movies"
-  add_foreign_key "lists", "shows"
   add_foreign_key "lists", "users"
 end
