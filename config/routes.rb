@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :lists
   resources :movies
-  devise_for :users
   resources :users, only: [:index, :show]
 
   # root "home#index"
@@ -14,4 +14,6 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
+  root 'devise/sessions#new'
 end

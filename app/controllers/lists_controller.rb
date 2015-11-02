@@ -11,11 +11,12 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @list = List.find(params[:id])
   end
 
   # GET /lists/new
   def new
-    @list = List.new
+    @list = current_user.lists.new(list_params)
   end
 
   # GET /lists/1/edit
@@ -25,7 +26,7 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(list_params)
+    @list = current_user.list.new(list_params)
 
     respond_to do |format|
       if @list.save

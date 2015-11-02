@@ -11,11 +11,12 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    @movie = Movie.find(params[:id])
   end
 
   # GET /movies/new
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.new(movie_params)
   end
 
   # GET /movies/1/edit
@@ -25,7 +26,7 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.new(movie_params)
 
     respond_to do |format|
       if @movie.save

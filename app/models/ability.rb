@@ -1,9 +1,10 @@
 class Ability
-  include CanCan::Ability
+	include CanCan::Ability
 
-  def initialize(user)
-    can :read, :all
-
-
-end
+	def initialize(user)
+		user ||= User.new 
+		if user.email?
+			can :read, :all
+		end
+	end
 end
