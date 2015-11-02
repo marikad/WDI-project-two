@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   # GET /movies
   # GET /movies.json
@@ -16,7 +15,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/new
   def new
-    @movie = current_user.movies.new(movie_params)
+    @movie = Movie.new
   end
 
   # GET /movies/1/edit
@@ -26,7 +25,7 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = current_user.movies.new(movie_params)
+    @movie = Movie.new(movie_params)
 
     respond_to do |format|
       if @movie.save

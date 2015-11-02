@@ -2,3 +2,10 @@
 
 
 <%= @user.email  %>
+
+<h2>My Lists</h2>
+<ul>
+	<% @user.lists.each do |list| %>
+	<li><%= link_to list.title, list %></li>
+	<% end %>
+</ul>

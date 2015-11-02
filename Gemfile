@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'role_model'
+gem "paperclip", "~> 4.3"
 gem "cancancan"
 gem 'foundation-rails'
 gem 'devise'

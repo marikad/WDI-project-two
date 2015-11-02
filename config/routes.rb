@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'tv_shows/index'
+
+  get 'tv_shows/show'
+
+  get 'lists_all/index'
+
+  get 'lists_all/show'
+
   devise_for :users
   resources :lists
   resources :movies

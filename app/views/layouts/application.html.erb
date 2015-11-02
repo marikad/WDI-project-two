@@ -13,22 +13,14 @@
   </head>
 
   <body>
+  <%= render 'header' %>
+  <div class="row">
+  <div class="large-12 columns">
+       
+     <%= yield %>
+      </div>
+      </div>
  
-  
-  
-  <div class="off-canvas-wrap main-area" data-offcanvas>
-    <div class="inner-wrap">
-      
-      <%= render 'nav' %>
-
-      <section class="main-section">
-        <%= yield %>
-      </section>
-
-    <a class="exit-off-canvas"></a>
-
-    </div>
-  </div>
 
 
 

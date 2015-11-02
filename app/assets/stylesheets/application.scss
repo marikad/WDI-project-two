@@ -1,16 +1,98 @@
 @import "foundation_and_overrides";
 @import "home";
+@import "movies";
 
-/*
 body{
 	background-color: #1d1c1c;
 }
 
-.header{
-	background: -webkit-linear-gradient(#3b3838, #000);
-	width: 100%;
-	height: 171px;
+nav{
+height: 40px;
+ width: 100%;
+ font-size: 11pt;
+ font-family: 'PT Sans', Arial, sans-serif;
+ font-weight: bold;
+ position: relative;
+	 ul {
+		    padding: 0;
+		    margin: 0 auto;
+		    width: 600px;
+		    height: 40px;
+		    list-style: none;
+		      
+	}
+			li {
+			    display: inline;
+			    float: left;
+          position: relative;
+          line-height: 21px;
+          text-align: left;
+			}
+		a{
+			    color: #4f4c4c;
+			    display: inline-block;
+			    width: 100px;
+			    text-align: center;
+			    text-decoration: none;
+			    line-height: 40px;
+		}
 }
+
+ul li a:hover{
+       color: #fff;
+   }
+
+   header{
+   	background: -webkit-linear-gradient(#3b3838, #000);
+   	width: 100%;
+   	height: 171px;
+   }
+
+   nav li a {
+       box-sizing:border-box;
+       -moz-box-sizing:border-box;
+       -webkit-box-sizing:border-box;
+   }
+   nav li:last-child a {
+       border-right: 0;
+   }
+
+
+   nav a#pull {
+       display: none;
+   }   
+h1{
+	color: #fff;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+.border{
+	border: 1px solid #fff;
+
+}
+
+ul li{
+	list-style: none;
+}
+
+li{
+	color: #fff;
+}
+
+
+/*
+
 
 #log-in{
 	color: #fff;
