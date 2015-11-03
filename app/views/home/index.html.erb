@@ -1,17 +1,1 @@
-<div class='login'>
-  <% if current_user %>
-     <%= current_user.email %>
-     <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-  <% else %>
-     <%= link_to "Sign In", new_user_session_path %>
-     <%= link_to "Register", new_user_registration_path %>
-  <% end %>
-</div>
-
-<% flash.each do |name, message| %>
-  <div class="flash-message flash-message-<%= name %>">
-    <%= message %>
-  </div>
-<% end %>
-
 <h1>Home (Logged In)</h1>

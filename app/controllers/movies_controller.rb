@@ -4,7 +4,20 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
+    @title = "Discover Movies & TV Shows"
     @movies = Movie.all
+  end
+
+  def films
+    @title = "Movies"
+    @movies = Movie.films
+    render :index
+  end
+
+  def tv_shows
+    @title = "TV Shows"
+    @movies = Movie.tv_shows
+    render :index
   end
 
   # GET /movies/1

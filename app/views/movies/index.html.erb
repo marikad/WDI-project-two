@@ -1,18 +1,16 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @title %></h1>
 
-<h1>Discover New Movies & TV Shows </h1>
-
-  <ul>
-    <% @movies.each do |movie| %>
-    <div class= "border">
-        <li><%= movie.title %></li>
-        <li><%= movie.description %></li>
-        <li><%= image_tag(movie.image, width:'180', height: '270') %></li>
-        <li><%= movie.format %></li>
-        <li><%= link_to 'More Info', movie %></li>
-    <% end %>
-    </div>
-  </ul>
+<ul>
+<% @movies.each do |movie| %>
+<div class= "border">
+    <li><%= movie.title %></li>
+    <li><%= movie.description %></li>
+    <li><%= image_tag(movie.image, width:'180', height: '270') %></li>
+    <li><%= movie.format %></li>
+    <li><%= link_to 'More Info', movie %></li>
+<% end %>
+</div>
+</ul>
 
 <br>
 

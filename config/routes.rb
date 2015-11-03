@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
-  get 'tv_shows/index'
-
-  get 'tv_shows/show'
-
-  get 'lists_all/index'
-
-  get 'lists_all/show'
-
   devise_for :users
   resources :lists
-  resources :movies
+  resources :movies, except: [:index] 
+  get "discover", to: "movies#index"
+  get "movies", to: "movies#films"
+  get "tv_shows", to: "movies#tv_shows"
   resources :users, only: [:index, :show]
 
-  # root "home#index"
   devise_scope :user do
     authenticated :user do
       root 'home#index', as: :authenticated_root

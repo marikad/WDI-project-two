@@ -19,8 +19,11 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-
+  <div class="field">
+    <%= f.label :movie_ids %><br>
+    <%= f.collection_check_boxes :movie_ids, Movie.all, :id, :title %>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "button expand" %>
   </div>
 <% end %>

@@ -1,0 +1,11 @@
+<li>
+	<ul>
+		<% if user.image.blank? %>
+			<li><%= image_tag "http://fillmurray.com/300/300" %></li>
+		<% else %>
+			<li><%= image_tag user.image %></li>
+		<% end %>
+		<li><%= user.first_name %> <%= user.last_name %> <%= link_to "@#{user.username}", user %></li>
+		<li>(To remove) <%= user.email %></li>
+	</ul>
+</li>

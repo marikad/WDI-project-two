@@ -1,22 +1,15 @@
-<p id="notice"><%= notice %></p>
-
+<h1><%= @list.title %></h1>
+<h4>A list by <%= link_to @list.user.try(:username), @list.user %></h4>
 <p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
   <%= @list.description %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @list.user %>
-</p>
+<ul>
+	<%= render @list.movies %>
+</ul>
 
 <% if current_user.id === @list.user_id %>
-<%= link_to 'Edit', edit_list_path(@list) %> |
-<%= link_to 'Destroy', @list, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', lists_path %>
+	<%= link_to 'Edit', edit_list_path(@list) %> |
+	<%= link_to 'Destroy', @list, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	<%= link_to 'Back', lists_path %>
 <% end %>
