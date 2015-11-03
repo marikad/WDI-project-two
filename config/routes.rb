@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "movies", to: "movies#films"
   get "tv_shows", to: "movies#tv_shows"
   resources :users, only: [:index, :show]
+  resources :comments, only: [:create, :destroy]
 
   devise_scope :user do
     authenticated :user do

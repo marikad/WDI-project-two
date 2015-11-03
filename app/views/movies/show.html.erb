@@ -10,10 +10,22 @@
   <%= @movie.description %>
 </p>
 
+
+
 <p>
   <strong>Image:</strong>
-  <%= image_tag(@movie.image, width:'180', height: '270') %>
+ 	<div class="video-link" data-video-id="y-PKffm2uI4dk"><%= image_tag(@movie.image, width:'180', height: '270') %></div>
 </p>
+
+<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Watched</button><br>
+<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+  <li><a href="#">Want to watch</a></li>
+  <li><a href="#">Already watched</a></li>
+  <li><a href="#">Currently watching</a></li>
+</ul>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
+
+<%= render partial: 'comments/form', locals: { commentable: @movie } %>
+<%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @movie } %>

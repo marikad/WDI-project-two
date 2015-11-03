@@ -13,3 +13,6 @@
 	<%= link_to 'Destroy', @list, method: :delete, data: { confirm: 'Are you sure?' } %> |
 	<%= link_to 'Back', lists_path %>
 <% end %>
+
+<%= render partial: 'comments/form', locals: { commentable: @list } %>
+<%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @list } %>

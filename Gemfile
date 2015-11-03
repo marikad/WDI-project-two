@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'acts_as_commentable', '4.0.2'
 gem "paperclip", "~> 4.3"
 gem "cancancan"
 gem 'foundation-rails'
