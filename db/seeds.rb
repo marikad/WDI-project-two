@@ -8,27 +8,12 @@ Movie.destroy_all
 require "HTTParty"
 require "pry"
 
-alphabet     = ("a".."z").to_a
-base_uri     = "http://api.themoviedb.org/3/search/movie?query="
-api_key      = "&api_key=e289afb7fe5adaeb4a56eb709fc9ebee"
-image_width  = 300
-image_prefix = "https://image.tmdb.org/t/p/w#{image_width}"
-
-alphabet.each do |letter|
-	response    = HTTParty.get(base_uri+"a"+api_key)
-	total_pages	= response['total_pages']
-	results     = response['results']
-	save_results(results)
-
-	2.upto(total_pages) do |page_number|
-		HTTParty.get(base_uri+"a"+api_key+"&page=#{page_number}")
-		results = response['results']
-		save_results(results)
-	end
-end
-
 def save_results(results)
+	image_width  = 300
+	image_prefix = "https://image.tmdb.org/t/p/w#{image_width}"
+
 	results.each do |movie|
+		puts "Saving #{movie['title']}" if movie["title"]
 		local_movie 						  = Movie.new
 		local_movie.title         = movie["title"] if movie["title"]
 		local_movie.description   = movie["overview"] if movie["overview"]
@@ -36,5 +21,28 @@ def save_results(results)
 		local_movie.format        = "movie"
 		local_movie.realease_date = movie["release_date"] if movie["release_date"]
 		local_movie.save
+		puts "Movie acquired."
+	end
+end
+
+alphabet     = ("a".."z").to_a
+base_uri     = "http://api.themoviedb.org/3/search/movie?query="
+api_key      = "&api_key=e289afb7fe5adaeb4a56eb709fc9ebee"
+
+alphabet.each do |letter|
+	puts "Seaching for letter: #{letter}"
+	response    = HTTParty.get(base_uri+letter+api_key)
+	total_pages	= response['total_pages']
+	results     = response['results']
+
+	puts "Saving page 1 of #{total_pages}"
+	save_results(results)
+
+	2.upto(total_pages) do |page_number|
+		puts "Saving page #{page_number} of #{total_pages}"
+		response = HTTParty.get(base_uri+letter+api_key+"&page=#{page_number}")
+		results  = response['results']
+		save_results(results)
+		puts "\n\n"
 	end
 end
