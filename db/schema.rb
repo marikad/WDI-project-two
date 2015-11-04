@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103145436) do
+ActiveRecord::Schema.define(version: 20151104121148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,24 @@ ActiveRecord::Schema.define(version: 20151103145436) do
     t.string   "title"
     t.text     "description"
     t.text     "image"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "format"
     t.string   "realease_date"
     t.text     "trailer"
+    t.boolean  "adult"
+    t.string   "backdrop_path"
+    t.string   "genre_ids"
+    t.integer  "the_movie_db_id"
+    t.string   "original_language"
+    t.string   "original_title"
+    t.text     "overview"
+    t.date     "release_date"
+    t.string   "poster_path"
+    t.decimal  "popularity"
+    t.boolean  "video"
+    t.decimal  "vote_average"
+    t.integer  "vote_count"
   end
 
   create_table "users", force: :cascade do |t|
