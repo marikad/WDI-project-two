@@ -6,6 +6,11 @@ class MoviesController < ApplicationController
   def index
     @title = "Discover Movies & TV Shows"
     @movies = Movie.all
+    if params[:q]
+      @q = Movies.ransack(params[:q])
+      @q.ransack(params[:q])
+      @movies = @q.result(distinct: true)
+    end
   end
 
   def films
@@ -84,6 +89,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :image, :format)
+      params.require(:movie).permit(:title, :realease_date, :description, :image, :format, :trailer)
     end
 end

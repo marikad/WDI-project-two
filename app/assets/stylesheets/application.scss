@@ -1,10 +1,11 @@
 @import "foundation_and_overrides";
+@import "movies";
 
-$blue: #30DBBD;
+//$blue: #30DBBD;
 
-header {
-	background: $blue;
-}
+
+
+
 
 #logo {
 	font-weight: 700;
@@ -39,11 +40,16 @@ ul li {
 
 
 
+
+
+
+
+
 // @import "home";
 // @import "movies";
 
 // body{
-// 	background-color: #1d1c1c;
+// 
 // }
 
 // nav{

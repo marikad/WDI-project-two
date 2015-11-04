@@ -1,5 +1,5 @@
 class List < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_and_belongs_to_many :movies
   acts_as_commentable
 end

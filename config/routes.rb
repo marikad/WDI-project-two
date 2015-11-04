@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :lists
-  resources :movies, except: [:index] 
+  resources :movies, except: [:index]
   get "discover", to: "movies#index"
   get "movies", to: "movies#films"
   get "tv_shows", to: "movies#tv_shows"

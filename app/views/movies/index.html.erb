@@ -1,16 +1,19 @@
 <h1><%= @title %></h1>
 
-<ul>
-<% @movies.each do |movie| %>
-<div class= "border">
-    <li><%= movie.title %></li>
-    <li><%= movie.description %></li>
-    <li><%= image_tag(movie.image, width:'180', height: '270') %></li>
-    <li><%= movie.format %></li>
-    <li><%= link_to 'More Info', movie %></li>
-<% end %>
+<div id="movie-container">
+	<% @movies.each do |movie| %>
+		<div class= "movie-tile">
+			<ul>
+				<li><%= image_tag movie.image, :class => "movie-tile-image" %></li>
+				<li id="title"><%= movie.title %></li>
+				<div class="rw-ui-container"></div>
+				<li><%= movie.description.try(:truncate, 100) %></li>
+				<li><%= movie.format %></li>
+				<li><%= link_to 'More Info', movie %></li>
+			</ul>
+		</div>
+	<% end %>
 </div>
-</ul>
 
 <br>
 

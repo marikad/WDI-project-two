@@ -1,51 +1,30 @@
 <header>
-	<nav class="top-bar row" data-topbar role="navigation">
-		<ul class="title-area">
-			<li class="name">
-				<h1><%= link_to "WhatToWatch365", root_path, id: "logo" %></h1>
-			</li>
-			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		</ul>
-
-		<section class="top-bar-section">
-			<!-- Right Nav Section -->
-			<ul class="right">
-				<li><%= link_to 'Discover', discover_path %></li>
-				<li><%= link_to 'Movies', movies_path %></li>
-				<li><%= link_to 'TV Shows', tv_shows_path %></li>
-				<% if user_signed_in? %>
-					<li><%= link_to 'New List', new_list_path %></li>
-					<% if current_user.username? %>
-						<li><%= link_to current_user.username, current_user %></li>
-					<% else %>
-						<li><%= link_to current_user.email, current_user %></li>
-					<% end %>
-				<li class="has-dropdown">
-					<a href="#">Account</a>
-					<ul class="dropdown">
-						<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-						<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-					</ul>
-				</li>
-				<% else %>
-				<li><%= link_to "Register", new_user_registration_path %></li>
-				<li><%= link_to "Login", new_user_session_path %></li>
-				<% end %>
-			</ul>
-
-			<!-- Left Nav Section -->
-			<ul class="left">
-				<li class="has-dropdown">
-					<a href="#">Explore</a>
-					<ul class="dropdown">
-						<li><%= link_to 'Lists', lists_path %></li>
-						<li><%= link_to 'People', users_path %></li>
-					</ul>
-				</li>
-			</ul>
-		</section>
-	</nav>
+<h1>WhatToWatch365</h1>
+<nav>
+ <li><%= link_to 'Home', discover_path, :class => 'item' %>
+    </li>
+  <li><%= link_to 'Discover', discover_path, :class => 'item' %>
+  </li>
+    <li><%= link_to 'Movies', movies_path, :class => 'item' %>
+    </li>
+  
+    <li><%= link_to 'TV Shows', tv_shows_path, :class => 'item' %>
+    </li>
+ 
+ <li><%= link_to 'Explore', tv_shows_path, :class => 'item' %>
+ </li>
+ <li></li>
+ <li>
+ 		<%= search_form_for @q, url: discover_path, class: "navbar-form", id: "search-form" do |f| %>
+    <%= f.text_field :title_cont, class: "span2 search-bar", placeholder: "Search Movies, TV Shows and Actors" %>
+    <button class="btn search-button" type="submit">Search</button>
+   <% end %>
+</li>
+</nav>
+<!-- When submit the form, the view rendered will be the index view of our articles resource -->
 </header>
+
+
 
 <% flash.each do |name, message| %>
 <div class="flash-message flash-message-<%= name %>">

@@ -1,21 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
   <%= @movie.title %>
 </p>
+<div class="rw-ui-container"></div>
 
 <p>
-  <strong>Description:</strong>
   <%= @movie.description %>
 </p>
 
 
 
 <p>
-  <strong>Image:</strong>
- 	<div class="video-link" data-video-id="y-PKffm2uI4dk"><%= image_tag(@movie.image, width:'180', height: '270') %></div>
+  <div class="poster">
+  <span class="overlay"></span>
+ 	<div class="video-link" data-video-id=<%= @movie.trailer %>><%= image_tag(@movie.image, width:'180', height: '270') %></div>
+ 	</div>
 </p>
+
+
 
 <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Watched</button><br>
 <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
