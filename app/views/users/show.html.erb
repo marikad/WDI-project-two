@@ -1,0 +1,28 @@
+<section class="row">
+	<div class="small-12 medium-8 medium-centered columns">
+		<ul class="text-center">
+			<% if current_user %>
+			<% if current_user.image.blank? %>
+			<li class="profile-image"><%= image_tag "http://facehoff.herokuapp.com/300/300", :class => 'main-image' %></li>
+			<% else %>
+			<li class="profile-image"><%= image_tag current_user.image, :class => 'main-image' %></li>
+			<% end %>
+			<% end %>
+			<h1><%= @user.first_name.capitalize %></h1>
+			<h2>My Lists</h2>
+		</ul>
+	</div>
+</section>
+
+<div class="row">
+	<ul class="small-12 text-center columns clearfix">
+		<%= render @user.lists %>
+	</ul>
+</div>
+
+<section class="row">
+	<div class="small-12 medium-8 medium-centered columns">
+		<%= render partial: 'comments/form', locals: { commentable: @user } %>
+		<%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @user } %>
+	</div>
+</section>

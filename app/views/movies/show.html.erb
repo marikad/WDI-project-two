@@ -1,0 +1,44 @@
+<div class="overflow">
+  <div class="right-show">
+    <div class="top">
+      <%= @movie.title %>
+      <div class="rw-ui-container"></div>
+    </div>
+    <p>
+      <%= @movie.description %>
+    </p>
+  </div>
+</div>
+
+<p>
+  <div class="poster">
+    <span class="overlay"></span>
+    <div class="video-link" data-video-id=<%= @movie.trailer %>><%= image_tag(@movie.image, width:'180', height: '270') %></div>
+  </div>
+</p>
+
+
+
+<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">
+  <%if current_user.voted_up_on? @movie %>
+  Watched
+  <% elsif current_user.voted_down_on? @movie %>
+  Want to watch
+  <% else %>
+  Choose
+  <% end %>
+</button><br>
+<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+  <li><%= link_to "Want to watch", dislike_movie_path(@movie), method: :put %></a></li>
+  <li><%= link_to "Already Watched", like_movie_path(@movie), method: :put %></li>
+  <li><%= link_to "Delete from List", novote_movie_path(@movie), method: :put %></li>
+</ul>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', movies_path %>
+
+
+
+<%= render partial: 'comments/form', locals: { commentable: @movie } %>
+<%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @movie } %>

@@ -1,0 +1,23 @@
+<h1><%= @title %></h1>
+
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+	<% @movies.each do |movie| %>
+		<li class="movie">
+			<ul>
+				<li><%= image_tag movie.image %></li>
+				<li class="title">
+					<h4><%= link_to movie.title, movie %></h4>
+				</li>
+				<li><%= movie.description.try(:truncate, 100) %></li>
+				<li><%= movie.format %></li>
+				<li><%= link_to 'More Info', movie %></li>
+			</ul>
+		</li>
+	<% end %>
+</ul>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>
+
+<%= paginate @movies %>

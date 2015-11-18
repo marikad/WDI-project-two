@@ -1,0 +1,7 @@
+<li>
+	<ul>
+		<li><%= link_to list.title, list, class: "button" %></li>
+		<li>by <%= list.user.try(:username) %></li>
+		<li><%= list.description %></li>
+	</ul>
+</li>

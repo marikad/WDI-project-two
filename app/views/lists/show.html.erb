@@ -1,0 +1,56 @@
+<h1><%= @list.title %></h1>
+<h4>A list by <%= link_to @list.user.try(:username), @list.user %></h4>
+<p>
+  <%= @list.description %>
+</p>
+
+<% if @list.title == "Already Watched"%>
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+	<% @list.user.find_up_voted_items.each do |movie| %>
+		<li class="movie">
+			<ul>
+				<li><%= image_tag movie.image %></li>
+				<li class="title">
+					<h4><%= link_to movie.title, movie %></h4>
+				</li>
+				<li><%= movie.description.try(:truncate, 100) %></li>
+				<li><%= movie.format %></li>
+				<li><%= link_to 'More Info', movie %></li>
+				<%= link_to 'Delete', dislike_movie_path(movie), method: :put, data: { confirm: 'Are you sure?' } %>
+			</ul>
+		</li>
+	<% end %>
+</ul>
+<% else %>
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+	<% @list.user.find_down_voted_items.each do |movie| %>
+		<li class="movie">
+					<ul>
+						<li><%= image_tag movie.image %></li>
+						<li class="title">
+							<h4><%= link_to movie.title, movie %></h4>
+						</li>
+						<li><%= movie.description.try(:truncate, 100) %></li>
+						<li><%= movie.format %></li>
+						<li><%= link_to 'More Info', movie %></li>
+						<%= link_to 'Destroy', @list, method: :destroy, data: { confirm: 'Are you sure?' } %> 
+					</ul>
+				</li>
+	<% end %>
+</ul>
+<% end %>
+
+
+
+<br>
+<br>
+
+
+<% if current_user.id === @list.user_id %>
+	<%= link_to 'Edit', edit_list_path(@list) %> |
+	<%= link_to 'Destroy', @list, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	<%= link_to 'Back', lists_path %>
+<% end %>
+
+<%= render partial: 'comments/form', locals: { commentable: @list } %>
+<%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @list } %>

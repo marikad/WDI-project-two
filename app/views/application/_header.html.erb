@@ -1,0 +1,69 @@
+<header>
+  <div class="row">
+    <ul class="user-login">
+      <li>
+        <h1>POD</h1>
+      </li>
+      <% if user_signed_in? %>
+        <li class="user"><%= link_to current_user.first_name.capitalize, current_user %></li>
+        <% if current_user.image.blank? %>
+          <li class="user">
+            <%= image_tag "http://facehoff.herokuapp.com/300/300", class: 'user-image' %>
+          </li>
+        <% else %>
+          <li class="user">
+            <%= image_tag current_user.image %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="user">
+          <%= link_to "Register", new_user_registration_path %>
+        </li>
+        <li class="user">
+          <%= link_to "Login", new_user_session_path %>
+        </li>
+      <% end %>
+    </ul>
+
+    <nav>
+      <ul>
+        <li>
+          <%= link_to 'Home', discover_path %>
+        </li>
+        <li>
+          <%= link_to 'Discover', discover_path %>
+        </li>
+        <li>
+          <%= link_to 'Movies', movies_path %>
+        </li>
+
+        <li>
+          <%= link_to 'TV Shows', tv_shows_path %>
+        </li>
+
+        <li>
+          <%= link_to 'Explore', tv_shows_path %>
+        </li>
+        <li>
+          <%= link_to 'My Movies', tv_shows_path %>
+        </li>
+        <% if user_signed_in? %>
+          <li><%= link_to "My Profile", current_user %></li>
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% end %>
+    </nav>
+
+    <%= search_form_for @q, url: discover_path, class: "navbar-form", id: "search-form" do |f| %>
+    <%= f.text_field :title_cont, class: "span2 search-bar search-button", placeholder: "Search Movies, TV Shows and Actors" %>
+    <% end %>
+   
+ </div>
+</header>
+
+  <% flash.each do |name, message| %>
+    <div data-alert class="alert-box secondary row flash-message flash-message-<%= name %>">
+     <%= message %>
+     <a href="#" class="close">&times;</a>
+  </div>
+  <% end %>
